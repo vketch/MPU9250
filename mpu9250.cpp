@@ -127,7 +127,6 @@ void MPU9250::getRes(void)
             break;
     }
 }
-
 void MPU9250::reset(void)
 {
     // reset device, reset all registers, clear gyro and accelerometer bias registers
@@ -403,13 +402,13 @@ void MPU9250::updateABCData(void)
 {
     if (readByte(MPU9250_ADDRESS, INT_STATUS) & 0x01) {
         readAccelData(accelCount);
-        accelData[X] = (float)accelCount[0] * aRes - accelBias[0];
-        accelData[Y] = (float)accelCount[1] * aRes - accelBias[1];
-        accelData[Z] = (float)accelCount[2] * aRes - accelBias[2];
+        //accelData[X] = (float)accelCount[0] * aRes - accelBias[0];
+        //accelData[Y] = (float)accelCount[1] * aRes - accelBias[1];
+        //accelData[Z] = (float)accelCount[2] * aRes - accelBias[2];
 
-        //accelData[X] = (float)accelCount[0] * aRes * 9.81;
-        //accelData[Y] = (float)accelCount[1] * aRes * 9.81;
-        //accelData[Z] = (float)accelCount[2] * aRes * 9.81;
+        accelData[X] = (float)accelCount[0] * aRes * 9.81;
+        accelData[Y] = (float)accelCount[1] * aRes * 9.81;
+        accelData[Z] = (float)accelCount[2] * aRes * 9.81;
 
         //readGyroData(gyroCount);
         //gyroData[X] = (float)gyroCount[0] * gRes - gyroBias[0];
